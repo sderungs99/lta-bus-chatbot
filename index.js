@@ -4,7 +4,6 @@ const
     config = require('config'),
     crypto = require('crypto'),
     request = require('request'),
-    rp = require('request-promise');
 
 var app = express();
 app.set('port', (process.env.PORT || 5000));
@@ -141,25 +140,7 @@ function sendTextMessage(recipientId, messageText) {
             'ServiceNo': '15',
             'SST': 'True'
         }
-    };
-
-    // rp(options)
-    //     .then(function (body) {
-    //         var info = JSON.parse(body);
-    //         console.log(info.BusStopID);
-    //         console.log(messageText);
-
-    //         var messageData = {
-    //             recipient: {
-    //                 id: recipientId
-    //             },
-    //             message: {
-    //                 text: info.BusStopID
-    //             }
-    //         };
-
-    //         callSendAPI(messageData);
-    //     });
+    }
 
     function callback(error, response, body) {
         if (!error && response.statusCode == 200) {
