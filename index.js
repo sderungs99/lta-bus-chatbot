@@ -100,7 +100,7 @@ function receivedMessage(event) {
         var busDetailsArray = messageText.split('-');
 
         if (busDetailsArray.length == 2) {
-            sendBusTimingMessage(senderID, messageText);
+            sendBusTimingMessage(senderID, busDetailsArray[0], busDetailsArray[1]); // TODO: look at destructuring for the array
         } else {
             sendErrorMessage(senderID);
         }
@@ -124,25 +124,26 @@ function receivedPostback(event) {
     sendTextMessage(senderID, "Postback called");
 }
 
-function sendBusTimingMessage(recipientId, messageText) {
+function sendBusTimingMessage(recipientId, busStopId, serviceNo) {
 
     axios.get('http://datamall2.mytransport.sg/ltaodataservice/BusArrival', {
         headers: {
             'AccountKey': LTA_ACCOUNT_KEY
         },
         params: {
-            'BusStopID': messageText, //83139 as an example
-            'ServiceNo': '15',
+            'BusStopID': busStopId, //83139 as an example
+            'ServiceNo': serviceNo, //15 as an example
             'SST': 'True'
         }
     })
         .then(function (response) {
+            var messageText = response.data.BusStopID + ' ' + response.data.Services.ServiceNo
             var messageData = {
                 recipient: {
                     id: recipientId
                 },
                 message: {
-                    text: response.data.BusStopID
+                    text: messageText
                 }
             };
             callSendAPI(messageData);
