@@ -137,7 +137,10 @@ function sendBusTimingMessage(recipientId, busStopId, serviceNo) {
         }
     })
         .then(function (response) {
-            var messageText = 'Next bus will arrive at: ' + response.data.Services[0].NextBus.EstimatedArrival
+
+            //TODO: Check if a bus service has been found. If not, send the error message back to the user.
+
+            var messageText = 'Next bus ' + serviceNo + ' will arrive at: ' + response.data.Services[0].NextBus.EstimatedArrival
             var messageData = {
                 recipient: {
                     id: recipientId
