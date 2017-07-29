@@ -3,7 +3,7 @@ const
     bodyParser = require('body-parser'),
     config = require('config'),
     crypto = require('crypto'),
-    request = require('request'),
+    request = require('request')
 
 var app = express();
 app.set('port', (process.env.PORT || 5000));
