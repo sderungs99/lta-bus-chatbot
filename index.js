@@ -137,7 +137,7 @@ function sendBusTimingMessage(recipientId, busStopId, serviceNo) {
         }
     })
         .then(function (response) {
-            var messageText = response.data.BusStopID + ' ' + response.data.Services[0].ServiceNo
+            var messageText = 'Next bus will arrive at: ' + response.data.Services[0].NextBus.EstimatedArrival
             var messageData = {
                 recipient: {
                     id: recipientId
