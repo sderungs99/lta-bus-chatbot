@@ -163,9 +163,45 @@ function sendTextMessage(recipientId, messageText) {
 
     request(options, callback);
 
+}
 
 
-};
+function xxxsendTextMessage(recipientId, messageText) {
+
+    var options = {
+        url: 'http://datamall2.mytransport.sg/ltaodataservice/BusArrival',
+        headers: {
+            'AccountKey': LTA_ACCOUNT_KEY
+        },
+        qs: {
+            'BusStopID': messageText, //83139 as an example
+            'ServiceNo': '15',
+            'SST': 'True'
+        }
+    }
+
+    function callback(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            var info = JSON.parse(body);
+            console.log(info.BusStopID);
+            console.log(messageText);
+
+            var messageData = {
+                recipient: {
+                    id: recipientId
+                },
+                message: {
+                    text: info.BusStopID
+                }
+            };
+
+            callSendAPI(messageData);
+        }
+    }
+
+    request(options, callback);
+
+}
 
 function sendGenericMessage(recipientId) {
     var messageData = {
