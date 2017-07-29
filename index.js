@@ -137,49 +137,50 @@ function sendTextMessage(recipientId, messageText) {
             'AccountKey': LTA_ACCOUNT_KEY
         },
         qs: {
-            'BusStopID': messageText, //83139 as an example
+            'BusStopID': '83139', //83139 as an example
             'ServiceNo': '15',
             'SST': 'True'
         }
     };
 
-    rp(options)
-        .then(function (body) {
-            var info = JSON.parse(body);
-            console.log(info.BusStopID);
-            console.log(messageText);
-
-            var messageData = {
-                recipient: {
-                    id: recipientId
-                },
-                message: {
-                    text: info.BusStopID
-                }
-            };
-
-            callSendAPI(messageData);
-        })
-
-    // function callback(error, response, body) {
-    //     if (!error && response.statusCode == 200) {
+    // rp(options)
+    //     .then(function (body) {
     //         var info = JSON.parse(body);
     //         console.log(info.BusStopID);
+    //         console.log(messageText);
 
     //         var messageData = {
     //             recipient: {
     //                 id: recipientId
     //             },
     //             message: {
-    //                 text: "info.BusStopID"
+    //                 text: info.BusStopID
     //             }
     //         };
 
     //         callSendAPI(messageData);
-    //     }
-    // }
+    //     });
 
-    // request(options, callback);
+    function callback(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            var info = JSON.parse(body);
+            console.log(info.BusStopID);
+            console.log(messageText);
+
+            // var messageData = {
+            //     recipient: {
+            //         id: recipientId
+            //     },
+            //     message: {
+            //         text: "info.BusStopID"
+            //     }
+            // };
+
+            // callSendAPI(messageData);
+        }
+    }
+
+    request(options, callback);
 
 
 
