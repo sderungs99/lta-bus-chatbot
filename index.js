@@ -131,38 +131,58 @@ function receivedPostback(event) {
 
 function sendTextMessage(recipientId, messageText) {
 
-    var options = {
-        url: 'http://datamall2.mytransport.sg/ltaodataservice/BusArrival',
+    axios.get('http://datamall2.mytransport.sg/ltaodataservice/BusArrival', {
+        params: {
+            ID: 12345
+        },
         headers: {
             'AccountKey': LTA_ACCOUNT_KEY
         },
-        qs: {
+        params: {
             'BusStopID': messageText, //83139 as an example
             'ServiceNo': '15',
             'SST': 'True'
         }
-    }
+    })
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 
-    function callback(error, response, body) {
-        if (!error && response.statusCode == 200) {
-            var info = JSON.parse(body);
-            console.log(info.BusStopID);
-            console.log(messageText);
+    // var options = {
+    //     url: 'http://datamall2.mytransport.sg/ltaodataservice/BusArrival',
+    //     headers: {
+    //         'AccountKey': LTA_ACCOUNT_KEY
+    //     },
+    //     qs: {
+    //         'BusStopID': messageText, //83139 as an example
+    //         'ServiceNo': '15',
+    //         'SST': 'True'
+    //     }
+    // }
 
-            var messageData = {
-                recipient: {
-                    id: recipientId
-                },
-                message: {
-                    text: info.BusStopID
-                }
-            };
+    // function callback(error, response, body) {
+    //     if (!error && response.statusCode == 200) {
+    //         var info = JSON.parse(body);
+    //         console.log(info.BusStopID);
+    //         console.log(messageText);
 
-            callSendAPI(messageData);
-        }
-    }
+    //         var messageData = {
+    //             recipient: {
+    //                 id: recipientId
+    //             },
+    //             message: {
+    //                 text: info.BusStopID
+    //             }
+    //         };
 
-    request(options, callback);
+    //         callSendAPI(messageData);
+    //     }
+    // }
+
+    // request(options, callback);
 
 }
 
