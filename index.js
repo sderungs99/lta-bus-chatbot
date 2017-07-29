@@ -137,7 +137,7 @@ function sendTextMessage(recipientId, messageText) {
             'AccountKey': LTA_ACCOUNT_KEY
         },
         qs: {
-            'BusStopID': '83139',
+            'BusStopID': messageText, //83139 as an example
             'ServiceNo': '15',
             'SST': 'True'
         }
