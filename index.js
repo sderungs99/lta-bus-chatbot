@@ -19,8 +19,8 @@ const VALIDATION_TOKEN = (process.env.FB_VERIFY_TOKEN) ?
     (process.env.FB_VERIFY_TOKEN) :
     config.get('validationToken');
 
-const PAGE_ACCESS_TOKEN = (process.env.FB_ACCESS_TOKEN) ?
-    (process.env.FB_ACCESS_TOKEN) :
+const PAGE_ACCESS_TOKEN = (process.env.FB_PAGE_ACCESS_TOKEN) ?
+    (process.env.FB_PAGE_ACCESS_TOKEN) :
     config.get('pageAccessToken');
 
 if (!(APP_SECRET && VALIDATION_TOKEN && PAGE_ACCESS_TOKEN)) {
