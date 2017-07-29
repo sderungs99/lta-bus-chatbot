@@ -99,7 +99,7 @@ function receivedMessage(event) {
 
         var busDetailsArray = messageText.split('-');
 
-        if (busDetailsArray.length == 1) {
+        if (busDetailsArray.length == 2) {
             sendBusTimingMessage(senderID, messageText);
         } else {
             sendErrorMessage(senderID);
