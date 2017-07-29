@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/sderungs99/lta-bus-chatbot#readme",
   "dependencies": {
+    "axios": "^0.16.2",
     "body-parser": "^1.17.2",
     "config": "^1.26.1",
     "express": "^4.15.3",
