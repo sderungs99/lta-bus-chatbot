@@ -144,10 +144,21 @@ function sendTextMessage(recipientId, messageText) {
     };
 
     rp(options)
-        .then(function(body) {
+        .then(function (body) {
             var info = JSON.parse(body);
             console.log(info.BusStopID);
             console.log(messageText);
+
+            var messageData = {
+                recipient: {
+                    id: recipientId
+                },
+                message: {
+                    text: info.BusStopID
+                }
+            };
+
+            callSendAPI(messageData);
         })
 
     // function callback(error, response, body) {
