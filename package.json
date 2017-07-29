@@ -1,0 +1,31 @@
+{
+  "name": "lta-bus-chatbot",
+  "version": "0.5.0",
+  "description": "LTA Bus Chatbot, providing arrival times of buses",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sderungs99/lta-bus-chatbot.git"
+  },
+  "keywords": [
+    "lta",
+    "bus",
+    "singapore",
+    "chatbot"
+  ],
+  "author": "sascha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sderungs99/lta-bus-chatbot/issues"
+  },
+  "homepage": "https://github.com/sderungs99/lta-bus-chatbot#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "config": "^1.26.1",
+    "express": "^4.15.3",
+    "request": "^2.81.0"
+  }
+}
