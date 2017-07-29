@@ -148,16 +148,16 @@ function sendTextMessage(recipientId, messageText) {
             console.log(info.BusStopID);
             console.log(messageText);
 
-            // var messageData = {
-            //     recipient: {
-            //         id: recipientId
-            //     },
-            //     message: {
-            //         text: info.BusStopID
-            //     }
-            // };
+            var messageData = {
+                recipient: {
+                    id: recipientId
+                },
+                message: {
+                    text: info.BusStopID
+                }
+            };
 
-            // callSendAPI(messageData);
+            callSendAPI(messageData);
         }
     }
 
