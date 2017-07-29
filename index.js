@@ -96,7 +96,14 @@ function receivedMessage(event) {
     var messageAttachments = message.attachments;
 
     if (messageText) {
-        sendBusTimingMessage(senderID, messageText);
+
+        var busDetailsArray = messageText.split('-');
+
+        if (busDetailsArray.length == 1) {
+            sendBusTimingMessage(senderID, messageText);
+        } else {
+            sendErrorMessage(senderID);
+        }
     }
 }
 
@@ -143,6 +150,18 @@ function sendBusTimingMessage(recipientId, messageText) {
         .catch(function (error) {
             console.log(error);
         });
+}
+
+function sendErrorMessage(recipientId) {
+    var messageData = {
+        recipient: {
+            id: recipientId
+        },
+        message: {
+            text: 'No results found, please send text in the format of <BusStopID>-<BusService> (e.g. 83139-15)'
+        }
+    };
+    callSendAPI(messageData);
 }
 
 function sendGenericMessage(recipientId) {
