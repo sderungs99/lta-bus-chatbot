@@ -147,6 +147,7 @@ function sendTextMessage(recipientId, messageText) {
         .then(function(body) {
             var info = JSON.parse(body);
             console.log(info.BusStopID);
+            console.log(messageText);
         })
 
     // function callback(error, response, body) {
