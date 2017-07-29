@@ -132,9 +132,6 @@ function receivedPostback(event) {
 function sendTextMessage(recipientId, messageText) {
 
     axios.get('http://datamall2.mytransport.sg/ltaodataservice/BusArrival', {
-        params: {
-            ID: 12345
-        },
         headers: {
             'AccountKey': LTA_ACCOUNT_KEY
         },
