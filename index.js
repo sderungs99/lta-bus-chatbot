@@ -96,19 +96,7 @@ function receivedMessage(event) {
     var messageAttachments = message.attachments;
 
     if (messageText) {
-
-        // If we receive a text message, check to see if it matches a keyword
-        // and send back the example. Otherwise, just echo the text we received.
-        switch (messageText) {
-            case 'generic':
-                sendGenericMessage(senderID);
-                break;
-
-            default:
-                sendTextMessage(senderID, messageText);
-        }
-    } else if (messageAttachments) {
-        sendTextMessage(senderID, "Message with attachment received");
+        sendBusTimingMessage(senderID, messageText);
     }
 }
 
@@ -129,7 +117,7 @@ function receivedPostback(event) {
     sendTextMessage(senderID, "Postback called");
 }
 
-function sendTextMessage(recipientId, messageText) {
+function sendBusTimingMessage(recipientId, messageText) {
 
     axios.get('http://datamall2.mytransport.sg/ltaodataservice/BusArrival', {
         headers: {
@@ -154,45 +142,7 @@ function sendTextMessage(recipientId, messageText) {
         })
         .catch(function (error) {
             console.log(error);
-        })
-}
-
-
-function xxxsendTextMessage(recipientId, messageText) {
-
-    var options = {
-        url: 'http://datamall2.mytransport.sg/ltaodataservice/BusArrival',
-        headers: {
-            'AccountKey': LTA_ACCOUNT_KEY
-        },
-        qs: {
-            'BusStopID': messageText, //83139 as an example
-            'ServiceNo': '15',
-            'SST': 'True'
-        }
-    }
-
-    function callback(error, response, body) {
-        if (!error && response.statusCode == 200) {
-            var info = JSON.parse(body);
-            console.log(info.BusStopID);
-            console.log(messageText);
-
-            var messageData = {
-                recipient: {
-                    id: recipientId
-                },
-                message: {
-                    text: info.BusStopID
-                }
-            };
-
-            callSendAPI(messageData);
-        }
-    }
-
-    request(options, callback);
-
+        });
 }
 
 function sendGenericMessage(recipientId) {
