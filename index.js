@@ -137,7 +137,7 @@ function sendTextMessage(recipientId, messageText) {
             'AccountKey': LTA_ACCOUNT_KEY
         },
         qs: {
-            'BusStopID': '83139', //83139 as an example
+            'BusStopID': messageText, //83139 as an example
             'ServiceNo': '15',
             'SST': 'True'
         }
@@ -167,16 +167,16 @@ function sendTextMessage(recipientId, messageText) {
             console.log(info.BusStopID);
             console.log(messageText);
 
-            // var messageData = {
-            //     recipient: {
-            //         id: recipientId
-            //     },
-            //     message: {
-            //         text: "info.BusStopID"
-            //     }
-            // };
+            var messageData = {
+                recipient: {
+                    id: recipientId
+                },
+                message: {
+                    text: info.BusStopID
+                }
+            };
 
-            // callSendAPI(messageData);
+            callSendAPI(messageData);
         }
     }
 
