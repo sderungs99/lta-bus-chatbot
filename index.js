@@ -3,7 +3,6 @@ const
     bodyParser = require('body-parser'),
     config = require('config'),
     crypto = require('crypto'),
-    request = require('request'),
     axios = require('axios')
 
 var app = express();
