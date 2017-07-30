@@ -216,6 +216,26 @@ function sendGenericMessage(recipientId) {
 }
 
 function callSendAPI(messageData) {
+    axios.post('https://graph.facebook.com/v2.6/me/messages', messageData, {
+        params: {
+            access_token: PAGE_ACCESS_TOKEN
+        }
+    })
+        .then(function (response) {
+            var recipientId = response.recipient_id;
+            var messageId = response.message_id;
+
+            console.log("Successfully sent generic message with id %s to recipient %s",
+                messageId, recipientId);
+        })
+        .catch(function (error) {
+            console.error("Unable to send message.");
+            console.error(response);
+            console.error(error);
+        });
+}
+
+function xxxcallSendAPI(messageData) {
     request({
         uri: 'https://graph.facebook.com/v2.6/me/messages',
         qs: { access_token: PAGE_ACCESS_TOKEN },
