@@ -218,7 +218,7 @@ function sendGenericMessage(recipientId) {
 function callSendAPI(messageData) {
     axios.post('https://graph.facebook.com/v2.6/me/messages', messageData, {
         params: {
-            access_token: 'asdf' //PAGE_ACCESS_TOKEN
+            access_token: PAGE_ACCESS_TOKEN
         }
     })
         .then(function (response) {
@@ -230,7 +230,6 @@ function callSendAPI(messageData) {
         })
         .catch(function (error) {
             console.error("Unable to send message.");
-            //console.error(response);
             console.error(error);
         })
 }
