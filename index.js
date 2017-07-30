@@ -123,16 +123,15 @@ function receivedPostback(event) {
     sendTextMessage(senderID, "Postback called");
 }
 
-function sendBusTimingMessage(recipientId, busStopId, serviceNo) {
+function sendBusTimingMessage(recipientId, busStopCode, serviceNo) {
 
-    axios.get('http://datamall2.mytransport.sg/ltaodataservice/BusArrival', {
+    axios.get('http://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2', {
         headers: {
             'AccountKey': LTA_ACCOUNT_KEY
         },
         params: {
-            'BusStopID': busStopId, //83139 as an example
-            'ServiceNo': serviceNo, //15 as an example
-            'SST': 'True'
+            'BusStopCode': busStopCode, //83139 as an example
+            'ServiceNo': serviceNo //15 as an example
         }
     })
         .then(function (response) {
@@ -161,7 +160,7 @@ function sendErrorMessage(recipientId) {
             id: recipientId
         },
         message: {
-            text: 'No results found, please send text in the format of <BusStopID>-<BusService> (e.g. 83139-15)'
+            text: 'No results found, please send text in the format of <BusStopCode>-<BusService> (e.g. 83139-15)'
         }
     };
     callSendAPI(messageData);
