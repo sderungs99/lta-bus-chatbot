@@ -230,7 +230,7 @@ function callSendAPI(messageData) {
         })
         .catch(function (error) {
             console.error("Unable to send message.");
-            console.error(response);
+            //console.error(response);
             console.error(error);
         })
 }
