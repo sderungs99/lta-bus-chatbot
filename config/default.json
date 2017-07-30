@@ -3,5 +3,6 @@
     "pageAccessToken": "b",
     "validationToken": "d",
     "serverURL": "d",
-    "ltaAccountKey": "e"
+    "ltaAccountKey": "e",
+    "ltaBusArrivalAPI": "http://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2"
 }

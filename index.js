@@ -125,7 +125,7 @@ function receivedPostback(event) {
 
 function sendBusTimingMessage(recipientId, busStopCode, serviceNo) {
 
-    axios.get('http://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2', {
+    axios.get(config.get('ltaBusArrivalAPI'), {
         headers: {
             'AccountKey': LTA_ACCOUNT_KEY
         },
